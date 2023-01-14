@@ -1,6 +1,9 @@
-.DS_Store
-._.DS_Store
-**/.DS_Store
-**/._.DS_Store
-.Rproj.user
-**Rproj
+**.Rproj.user
+**.Rhistory
+**.RData
+**.Ruserdata
+**.Rapp.history
+**.Rprofile
+**.Rproj
+**.DS_Store
+^ssGSEA2.0.Rproj$
