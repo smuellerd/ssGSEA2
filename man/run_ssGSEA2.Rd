@@ -58,7 +58,7 @@ add it but keeping the individual \code{*_UP} and \code{*_DN} versions.}
 
 \item{par}{Default: FALSE}
 
-\item{spare.cores}{Default: spare.cores}
+\item{spare.cores}{Default: 1}
 
 \item{export.signat.gct}{If TRUE gct files with expression values for each signature will be generated. Default: TRUE}
 

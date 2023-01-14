@@ -68,7 +68,7 @@
 #' @param global.fdr If TRUE calculate global FDR; else calculate FDR sample-by-sample. Default: FALSE
 #' @param extended.output If TRUE the result GCT files will contain statistics about gene coverage etc. Default: TRUE
 #' @param par Default: FALSE
-#' @param spare.cores Default: spare.cores
+#' @param spare.cores Default: 1
 #' @param export.signat.gct If TRUE gct files with expression values for each signature will be generated. Default: TRUE
 #' @param param.file Default: TRUE
 #' @param log.file Default: 'run.log'
@@ -106,7 +106,7 @@ run_ssGSEA2 <- function(input.ds,
                         extended.output = TRUE, 
                         par = FALSE,
                         spare.cores = 1,
-                        export.signat.gct = TRUE, ## 
+                        export.signat.gct = TRUE, 
                         param.file = TRUE,
                         log.file = 'run.log') {
 
@@ -364,18 +364,18 @@ run_ssGSEA2 <- function(input.ds,
   ##
   ## ####################################################
   project.geneset <- function (data.array,
-                           gene.names,
-                           n.cols,
-                           n.rows,
-                           weight = 0,
-                           statistic = "Kolmogorov-Smirnov",   ## alternatives: "Kolmogorov-Smirnov", "area.under.RES"
-                           gene.set,
-                           nperm = 200,
-                           correl.type  = "rank",              ## "rank", "z.score", "symm.rank"
-                           gene.set.direction=NULL,             ## direction of regulation; has to be in same order than 'gene.set'
-                           min.overlap,
-                           size.G.current
-                           ) {
+                               gene.names,
+                               n.cols,
+                               n.rows,
+                               weight = 0,
+                               statistic = "Kolmogorov-Smirnov",   ## alternatives: "Kolmogorov-Smirnov", "area.under.RES"
+                               gene.set,
+                               nperm = 200,
+                               correl.type  = "rank",              ## "rank", "z.score", "symm.rank"
+                               gene.set.direction=NULL,             ## direction of regulation; has to be in same order than 'gene.set'
+                               min.overlap,
+                               size.G.current
+                               ) {
 
 
 
@@ -901,24 +901,24 @@ run_ssGSEA2 <- function(input.ds,
   ## don't combine
   if (combine.mode == "combine.off") {
 
-      score.matrix.2 <- score.matrix
-      pval.matrix.2 <- pval.matrix
-      
-      ol.matrix.2 <- ol.matrix
-      ol.numb.matrix.2 <- ol.numb.matrix
-      ol.perc.matrix.2 <- ol.perc.matrix
-      
-      gs.names.2 <- gs.names
-      gs.descs.2 <- gs.descs
-      gs.size.2 <- gs.size 
+    score.matrix.2 <- score.matrix
+    pval.matrix.2 <- pval.matrix
+    
+    ol.matrix.2 <- ol.matrix
+    ol.numb.matrix.2 <- ol.numb.matrix
+    ol.perc.matrix.2 <- ol.perc.matrix
+    
+    gs.names.2 <- gs.names
+    gs.descs.2 <- gs.descs
+    gs.size.2 <- gs.size 
 
-      ## ####################################
-      ## combine replace
+    ## ####################################
+    ## combine replace
   } else if ((combine.mode == "combine.replace") || (combine.mode == "combine.add")) {
     fisher.pval <- function(p) {
-        Xsq <- -2*sum(log(p))
-        p.val <- pchisq(Xsq, df = 2*length(p), lower.tail = FALSE)
-        return(p.val)
+      Xsq <- -2*sum(log(p))
+      p.val <- pchisq(Xsq, df = 2*length(p), lower.tail = FALSE)
+      return(p.val)
     }
 
     score.matrix.2 <- NULL
@@ -927,52 +927,52 @@ run_ssGSEA2 <- function(input.ds,
     gs.descs.2 <- NULL
 
     add.entry.2 <- function (s, p, n, d) {
-        score.matrix.2 <<- rbind (score.matrix.2, s)
-        pval.matrix.2 <<- rbind (pval.matrix.2, p)
-        gs.names.2 <<- c (gs.names.2, n)
-        gs.descs.2 <<- c (gs.descs.2, d)
+      score.matrix.2 <<- rbind (score.matrix.2, s)
+      pval.matrix.2 <<- rbind (pval.matrix.2, p)
+      gs.names.2 <<- c (gs.names.2, n)
+      gs.descs.2 <<- c (gs.descs.2, d)
     }
 
     k <- 1
     for (i in 1:N.gs) {
-        temp <- strsplit(gs.names[i], split="_")
-        body <- paste(temp[[1]][seq(1, length(temp[[1]]) -1)], collapse="_")
-        suffix <- tail(temp[[1]], 1)
-        print(paste("i:", i, "gene set:", gs.names[i], "body:", body, "suffix:", suffix))
-        if (suffix == "UP") {  # This is an "UP" gene set
-            initial.up.entries <- initial.up.entries + 1
-            target <- paste(body, "DN", sep="_")
-            loc <- match(target, gs.names)
-            if (!is.na(loc)) {   # found corresponding "DN" gene set: create combined entry
-                score <- score.matrix[i,] - score.matrix[loc,]
-                pval <- sapply (1:Ns, function (k) fisher.pval (c (pval.matrix[i,k], pval.matrix[loc,k]))) # combine UP and DN p-values
-                add.entry.2 (score, pval, body, paste(gs.descs[i], "combined UP & DN"))
-                combined.entries <- combined.entries + 1
-                if (combine.mode == "combine.add") {  # also add the "UP entry
-                    add.entry.2 (score.matrix[i,], pval.matrix[i,], gs.names[i], gs.descs[i])
-                    final.up.entries <- final.up.entries + 1
-                }
-            } else {   # did not find corresponding "DN" gene set: create "UP" entry
-                add.entry.2 (score.matrix[i,], pval.matrix[i,], gs.names[i], gs.descs[i])
-                final.up.entries <- final.up.entries + 1
-            }
-        } else if (suffix == "DN") { # This is a "DN" gene set
-            initial.dn.entries <- initial.dn.entries + 1
-            target <- paste(body, "UP", sep="_")
-            loc <- match(target, gs.names)
-            if (is.na(loc)) { # did not find corresponding "UP" gene set: create "DN" entry
-                add.entry.2 (score.matrix[i,], pval.matrix[i,], gs.names[i], gs.descs[i])
-                final.dn.entries <- final.dn.entries + 1
-            } else { # it found corresponding "UP" gene set
-                if (combine.mode == "combine.add") { # create "DN" entry
-                    add.entry.2 (score.matrix[i,], pval.matrix[i,], gs.names[i], gs.descs[i])
-                    final.dn.entries <- final.dn.entries + 1
-                }
-            }
-        } else { # This is neither "UP nor "DN" gene set: create individual entry
+      temp <- strsplit(gs.names[i], split="_")
+      body <- paste(temp[[1]][seq(1, length(temp[[1]]) -1)], collapse="_")
+      suffix <- tail(temp[[1]], 1)
+      print(paste("i:", i, "gene set:", gs.names[i], "body:", body, "suffix:", suffix))
+      if (suffix == "UP") {  # This is an "UP" gene set
+        initial.up.entries <- initial.up.entries + 1
+        target <- paste(body, "DN", sep="_")
+        loc <- match(target, gs.names)
+        if (!is.na(loc)) {   # found corresponding "DN" gene set: create combined entry
+          score <- score.matrix[i,] - score.matrix[loc,]
+          pval <- sapply (1:Ns, function (k) fisher.pval (c (pval.matrix[i,k], pval.matrix[loc,k]))) # combine UP and DN p-values
+          add.entry.2 (score, pval, body, paste(gs.descs[i], "combined UP & DN"))
+          combined.entries <- combined.entries + 1
+          if (combine.mode == "combine.add") {  # also add the "UP entry
             add.entry.2 (score.matrix[i,], pval.matrix[i,], gs.names[i], gs.descs[i])
-            other.entries <- other.entries + 1
+            final.up.entries <- final.up.entries + 1
+          }
+        } else {   # did not find corresponding "DN" gene set: create "UP" entry
+          add.entry.2 (score.matrix[i,], pval.matrix[i,], gs.names[i], gs.descs[i])
+          final.up.entries <- final.up.entries + 1
         }
+      } else if (suffix == "DN") { # This is a "DN" gene set
+        initial.dn.entries <- initial.dn.entries + 1
+        target <- paste(body, "UP", sep="_")
+        loc <- match(target, gs.names)
+        if (is.na(loc)) { # did not find corresponding "UP" gene set: create "DN" entry
+          add.entry.2 (score.matrix[i,], pval.matrix[i,], gs.names[i], gs.descs[i])
+          final.dn.entries <- final.dn.entries + 1
+        } else { # it found corresponding "UP" gene set
+          if (combine.mode == "combine.add") { # create "DN" entry
+            add.entry.2 (score.matrix[i,], pval.matrix[i,], gs.names[i], gs.descs[i])
+            final.dn.entries <- final.dn.entries + 1
+          }
+        }
+      } else { # This is neither "UP nor "DN" gene set: create individual entry
+        add.entry.2 (score.matrix[i,], pval.matrix[i,], gs.names[i], gs.descs[i])
+        other.entries <- other.entries + 1
+      }
     } # end for loop over gene sets
 
     print(paste("initial.up.entries:", initial.up.entries))
@@ -1030,12 +1030,12 @@ run_ssGSEA2 <- function(input.ds,
   # prepare for new gct export (R CMAP functions)
   if(extended.output){
     
-        gs.descs.2 <- data.frame(Signature.set.description=gs.descs.2,
-                           Signature.set.size=gs.size.2,
-                           Signature.set.overlap.percent,
-                           Signature.set.overlap, 
-                           No.columns.scored, 
-                           stringsAsFactors = F)
+    gs.descs.2 <- data.frame(Signature.set.description=gs.descs.2,
+                       Signature.set.size=gs.size.2,
+                       Signature.set.overlap.percent,
+                       Signature.set.overlap, 
+                       No.columns.scored, 
+                       stringsAsFactors = F)
   } else {
     gs.descs.2 <- data.frame(Signature.set.description=gs.descs.2,
                              Signature.set.size=gs.size.2,

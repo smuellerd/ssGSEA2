@@ -14,13 +14,15 @@ Description: Single sample Gene Set Enrichment analysis (ssGSEA) and PTM
 URL: https://github.com/broadinstitute/ssGSEA2.0,
     https://doi.org/10.1074/mcp.TIR118.000943
 biocViews:
+Depends: R (>= 4.2)
 Imports: 
     cmapR,
     doParallel,
     foreach,
     magrittr,
     methods,
-    parallel
+    parallel,
+    DelayedArray (>= 0.24.0)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
