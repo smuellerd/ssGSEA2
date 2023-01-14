@@ -1,0 +1,27 @@
+Type: Package
+Package: ssGSEA2
+Title: ssGSEA and PTM-SEA
+Version: 1.0.0
+Authors@R: c(
+    person("Karsten", "Krug", role = "aut"),
+    person("Pablo", "Tamayo", role = "aut"),
+    person("The Broad Institute, Inc.", role = c("aut", "cph")),
+    person("Nicole", "Gay", , "nicole.r.gay@gmail.com", role = "cre"),
+    person("National Cancer Institute Clinical Proteomic Tumor Analysis Consortium (CPTAC)", role = "fnd")
+  )
+Description: Single sample Gene Set Enrichment analysis (ssGSEA) and PTM
+    Enrichment Analysis (PTM-SEA). 
+URL: https://github.com/broadinstitute/ssGSEA2.0,
+    https://doi.org/10.1074/mcp.TIR118.000943
+biocViews:
+Imports: 
+    cmapR,
+    doParallel,
+    foreach,
+    magrittr,
+    methods,
+    parallel
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+License: file LICENSE
