@@ -3,7 +3,6 @@
 
 ## usethis namespace: start
 #' @import doParallel
-#' @import DelayedArray
 #' @importFrom parallel detectCores stopCluster
 #' @importFrom foreach foreach %dopar%
 #' @importFrom methods new is
