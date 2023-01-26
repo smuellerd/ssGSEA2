@@ -86,11 +86,11 @@ http://doi.org/10.1074/mcp.TIR118.000943
 
 ### Citing ssGSEA
 
-1. Subramanian, A., Tamayo, P., Mootha, V. K., Mukherjee, S., Ebert, B. L., Gillette, M. A., et al. (2005).
+Subramanian, A., Tamayo, P., Mootha, V. K., Mukherjee, S., Ebert, B. L., Gillette, M. A., et al. (2005).
 **Gene set enrichment analysis: a knowledge-based approach for interpreting genome-wide expression profiles.**
 Proceedings of the National Academy of Sciences of the United States of America, 102(43), 15545-15550. 
 http://doi.org/10.1073/pnas.0506580102
 
-2. Abazeed, M. E., Adams, D. J., Hurov, K. E., Tamayo, P., Creighton, C. J., Sonkin, D., et al. (2013).
+Abazeed, M. E., Adams, D. J., Hurov, K. E., Tamayo, P., Creighton, C. J., Sonkin, D., et al. (2013).
 **Integrative Radiogenomic Profiling of Squamous Cell Lung Cancer.** Cancer Research, 73(20), 6289–6298.
 http://doi.org/10.1158/0008-5472.CAN-13-1616
