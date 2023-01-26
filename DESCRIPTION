@@ -10,20 +10,21 @@ Authors@R: c(
     person("National Cancer Institute Clinical Proteomic Tumor Analysis Consortium (CPTAC)", role = "fnd")
   )
 Description: Single sample Gene Set Enrichment analysis (ssGSEA) and PTM
-    Enrichment Analysis (PTM-SEA). 
+    Enrichment Analysis (PTM-SEA).
+License: file LICENSE
 URL: https://github.com/broadinstitute/ssGSEA2.0,
     https://doi.org/10.1074/mcp.TIR118.000943
-biocViews:
-Depends: R (>= 4.2)
+Depends: 
+    R (>= 4.2)
 Imports: 
     cmapR,
+    DelayedArray (>= 0.24.0),
     doParallel,
     foreach,
     magrittr,
     methods,
-    parallel,
-    DelayedArray (>= 0.24.0)
+    parallel
+biocViews:
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-License: file LICENSE

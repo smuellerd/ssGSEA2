@@ -2,7 +2,5 @@
 ^example$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^ssgsea-cli.R$
-^ssgsea-gui.R$
 ^config.yaml$
 ^misc$

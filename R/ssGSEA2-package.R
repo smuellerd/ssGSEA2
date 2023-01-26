@@ -10,6 +10,6 @@
 #' @importFrom stats na.omit p.adjust pchisq sd
 #' @importFrom cmapR parse_gctx write_gct
 #' @importFrom magrittr %>%
-#' @importFrom utils tail
+#' @importFrom utils tail download.file
 ## usethis namespace: end
 NULL
