@@ -5,9 +5,9 @@ See the [upstream repository](https://github.com/broadinstitute/ssGSEA2.0) for m
 publications, ssGSEA 2.0, PTM-SEA, [MSigDB](http://software.broadinstitute.org/gsea/msigdb/), and 
 [PTMsigDB](https://proteomics.broadapps.org/ptmsigdb/). 
 
-### Installation
+## Installation
 
-#### R >= 4.0
+### R >= 4.0
 
 ```r
 if (!require("devtools", quietly = TRUE)){
@@ -16,7 +16,7 @@ if (!require("devtools", quietly = TRUE)){
 devtools::install_github("nicolerg/ssGSEA2.0")
 ```
 
-#### R 3.6
+### R 3.6
 
 You must install the GitHub version of `cmapR` **first**:  
 ```r
@@ -31,7 +31,7 @@ Then install this package:
 devtools::install_github("nicolerg/ssGSEA2.0")
 ```
 
-### Example 
+## Example 
 
 In this example, we perform PTM-SEA with example input provided in [examples/](examples). 
 ```r
@@ -61,7 +61,7 @@ res = run_ssGSEA2("/tmp/PI3K_pert_logP_n2x23936.gct",
                   log.file = "/tmp/run.log")
 ```
 
-### Notes 
+## Notes 
 
 We are aware that the following warnings are seen upon attaching this package:  
 ```
@@ -73,9 +73,9 @@ This could be avoided by requiring `DelayedArray >= 0.24.0` and `R >= 4.2`.
 However, to make this package accessible to users using older versions of R, we opted not to do this. 
 See more details [here](https://github.com/cmap/cmapR/issues/70). 
 
-### Citing this work 
+## Citing this work 
 
-#### Citing ssGSEA2.0
+### Citing ssGSEA2.0
 
 Krug, K., Mertins, P., Zhang, B., Hornbeck, P., Raju, R., Ahmad, R., . Szucs, M., 
 Mundt, F., Forestier, D., Jane-Valbuena, J., Keshishian, H., Gillette, M. A., Tamayo, 
@@ -84,7 +84,7 @@ P., Mesirov, J. P., Jaffe, J. D., Carr, S. A., Mani, D. R. (2019).
 Molecular & Cellular Proteomics, 18(3), 576-593. 
 http://doi.org/10.1074/mcp.TIR118.000943
 
-#### Citing ssGSEA
+### Citing ssGSEA
 
 1. Subramanian, A., Tamayo, P., Mootha, V. K., Mukherjee, S., Ebert, B. L., Gillette, M. A., et al. (2005).
 **Gene set enrichment analysis: a knowledge-based approach for interpreting genome-wide expression profiles.**
