@@ -7,10 +7,27 @@ publications, ssGSEA 2.0, PTM-SEA, [MSigDB](http://software.broadinstitute.org/g
 
 ### Installation
 
+#### R >= 4.0
+
 ```r
 if (!require("devtools", quietly = TRUE)){
   install.packages("devtools")
 }
+devtools::install_github("nicolerg/ssGSEA2.0")
+```
+
+#### R 3.6
+
+You must install the GitHub version of `cmapR` **first**:  
+```r
+if (!require("devtools", quietly = TRUE)){
+  install.packages("devtools")
+}
+install_github("cmap/cmapR", ref="R-3.6")
+```
+
+Then install this package:  
+```r
 devtools::install_github("nicolerg/ssGSEA2.0")
 ```
 
