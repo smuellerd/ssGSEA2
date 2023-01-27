@@ -88,11 +88,11 @@
 #'   
 #' @examples 
 #' # Download example input
-#' download.file(url = paste0("https://raw.githubusercontent.com/nicolerg/ssGSEA2.0/",
+#' download.file(url = paste0("https://raw.githubusercontent.com/nicolerg/ssGSEA2/",
 #'     "master/example/PI3K_pert_logP_n2x23936.gct"),
 #'   destfile = "/tmp/PI3K_pert_logP_n2x23936.gct")
 #' # Download gene set database 
-#' download.file(url = paste0("https://raw.githubusercontent.com/nicolerg/ssGSEA2.0/",
+#' download.file(url = paste0("https://raw.githubusercontent.com/nicolerg/ssGSEA2/",
 #'     "master/example/ptm.sig.db.all.flanking.human.v1.8.1.gmt"),
 #'   destfile = "/tmp/ptm.sig.db.all.flanking.human.v1.8.1.gmt")
 #' # Using a small number of permutations for the sake of the example. 1000 recommended
