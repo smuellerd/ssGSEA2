@@ -13,7 +13,7 @@ publications, ssGSEA 2.0, PTM-SEA, [MSigDB](http://software.broadinstitute.org/g
 if (!require("devtools", quietly = TRUE)){
   install.packages("devtools")
 }
-devtools::install_github("nicolerg/ssGSEA2.0")
+devtools::install_github("nicolerg/ssGSEA2")
 ```
 
 ### R 3.6
@@ -28,7 +28,7 @@ install_github("cmap/cmapR", ref="R-3.6")
 
 Then install this package:  
 ```r
-devtools::install_github("nicolerg/ssGSEA2.0")
+devtools::install_github("nicolerg/ssGSEA2")
 ```
 
 ## Example 
@@ -38,11 +38,11 @@ In this example, we perform PTM-SEA with example input provided in [examples/](e
 library(ssGSEA2)
 
 # Download example input
-download.file(url = "https://raw.githubusercontent.com/nicolerg/ssGSEA2.0/master/example/PI3K_pert_logP_n2x23936.gct",
+download.file(url = "https://raw.githubusercontent.com/nicolerg/ssGSEA2/master/example/PI3K_pert_logP_n2x23936.gct",
               destfile = "/tmp/PI3K_pert_logP_n2x23936.gct")
 
 # Download gene set database 
-download.file(url = "https://raw.githubusercontent.com/nicolerg/ssGSEA2.0/master/example/ptm.sig.db.all.flanking.human.v1.8.1.gmt"),
+download.file(url = "https://raw.githubusercontent.com/nicolerg/ssGSEA2/master/example/ptm.sig.db.all.flanking.human.v1.8.1.gmt"),
               destfile = "/tmp/ptm.sig.db.all.flanking.human.v1.8.1.gmt")
 
 res = run_ssGSEA2("/tmp/PI3K_pert_logP_n2x23936.gct",
