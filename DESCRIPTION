@@ -13,7 +13,7 @@ Description: Single sample Gene Set Enrichment analysis (ssGSEA) and PTM
     Enrichment Analysis (PTM-SEA).
 License: file LICENSE
 URL: http://doi.org/10.1074/mcp.TIR118.000943,
-    https://github.com/nicolerg/ssGSEA2,
+    https://github.com/nicolerg/ssGSEA2.0,
     https://github.com/broadinstitute/ssGSEA2.0
 Imports: 
     cmapR,
