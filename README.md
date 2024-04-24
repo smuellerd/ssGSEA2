@@ -56,6 +56,7 @@ res = run_ssGSEA2("/tmp/PI3K_pert_logP_n2x23936.gct",
                   output.score.type = "NES", 
                   nperm = 1000, 
                   min.overlap = 5, 
+                  max.overlap = 2000,
                   extended.output = TRUE, 
                   global.fdr = FALSE,
                   log.file = "/tmp/run.log")

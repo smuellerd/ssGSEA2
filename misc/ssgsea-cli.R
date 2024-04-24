@@ -1,9 +1,9 @@
 # #!/usr/bin/env Rscript
 # options( warn = -1 )
-# 
+#
 # suppressPackageStartupMessages( if(!require("pacman")) install.packages ("pacman") )
 # suppressPackageStartupMessages(p_load("optparse"))
-# 
+#
 # # parse the directory this file is located
 # script.dir <- commandArgs()[4]
 # script.dir <- sub('^(.*(/|\\\\)).*', '\\1', sub('.*?\\=','', script.dir))
@@ -11,7 +11,7 @@
 # # if called from the directory is 'ssgsea-cli.R' resides in
 # # the line below attempts to fix this
 # script.dir <- ifelse(dir.exists(script.dir), script.dir, '.')
-# 
+#
 # # specify command line arguments
 # option_list <- list(
 #   make_option( c("-i", "--input"), action='store', type='character',  dest='input_ds', help='Path to input GCT file.'),
@@ -24,26 +24,27 @@
 #   make_option( c("-s", "--score"), action='store', type='character',  dest='output_score_type', help='Score type: "ES" - enrichment score,  "NES" - normalized ES', default = 'NES'),
 #   make_option( c("-p", "--perm"), action='store', type='character',  dest='nperm', help='Number of permutations', default = 1000),
 #   make_option( c("-m", "--minoverlap"), action='store', type='character',  dest='min_overlap', help='Minimal overlap between signature and data set.', default = 10),
+#   make_option( c("-m", "--maxoverlap"), action='store', type='character',  dest='max_overlap', help='Maximal gen set size.', default = 2000),
 #   make_option( c("-x", "--extendedoutput"), action='store', type='character',  dest='extended_output', help='If TRUE additional stats on signature coverage etc. will be included as row annotations in the GCT results files.', default = TRUE),
 #   make_option( c("-e", "--export"), action='store', type='character',  dest='export_signat_gct', help='For each signature export expression GCT files.', default = TRUE),
 #   make_option( c("-g", "--globalfdr"), action='store', type='character',  dest='global_fdr', help='If TRUE global FDR across all data columns is calculated.', default = FALSE),
 #   make_option( c("-l", "--lightspeed"), action='store', type='character',  dest='multi_core', help='If TRUE processing will be parallized across gene sets. (I ran out of single letters to define parameters...)', default = TRUE),
 #   make_option( c("-y", "--yaml"), action='store', type='character',  dest='yaml_file', help='Parameter file (.yaml)', default = NA)
 # )
-# 
+#
 # ## #####################################
 # ## source the actual script
 # source(file.path(script.dir, 'src', 'ssGSEA2.0.R'))
 # source(file.path(script.dir, 'src', 'parse_yaml_ssgsea.R'))
-# 
+#
 # # parse command line parameters
-# opt <- parse_param_ssgsea(option_list) 
-#  
+# opt <- parse_param_ssgsea(option_list)
+#
 # # hard-coded parameters
 # spare.cores <- 0 # use all available cpus
 # log.file <- paste(opt$output_prefix, '_ssgsea.log.txt', sep='')
-# 
-# 
+#
+#
 # ## ######################################################################################################
 # ##
 # ##                   run ssGSEA
@@ -67,6 +68,6 @@
 #   spare.cores=spare.cores,
 #   log.file=log.file
 # )
-# 
-# 
-# 
+#
+#
+#
